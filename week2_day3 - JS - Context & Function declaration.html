@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>JS</title>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+
+
+		<h1>JS | Context & Function declaration</h1>
+
+		<script>
+
+		
+		// apply() invocation method
+		var obj = {name: 'Example Object'}
+
+		function dummyFn(val1, val2){
+			console.log(val1, val2)
+			console.log(this)
+		}
+
+		dummyFn('My argument 1', 'My argument 2')
+		dummyFn.apply(obj, ['My argument 1', 'My argument 2'])
+
+
+
+
+
+
+		// call() invocation method
+		var obj = {name: 'Example Object'}
+
+		function dummyFn(val1, val2){
+			console.log(val1, val2)
+			console.log(this)
+		}
+
+		dummyFn('My argument 1', 'My argument 2')
+		dummyFn.call(obj, 'My argument 1', 'My argument 2')
+
+
+
+
+
+
+		// Example
+		var class1 = {teacher: 'Lydia', students: 42}
+		var class2 = {teacher: 'Juan', students: 76}
+		var class3 = {teacher: 'Romina', students: 28}
+
+
+		function showTeacher(){
+			console.log(this.teacher)
+		}
+
+		function showStudents(){
+			console.log(this.students)
+		}
+
+		function showDetails(){
+			console.log('Classroom of ' + this.students + ' students by ' + this.teacher)
+		}
+
+		showStudents() // ¡Ops! Error....
+		showStudents.call(class1)
+		showStudents.call(class2)
+		showDetails.call(class3)
+
+
+
+
+
+
+		// bind() returning function method
+		var value = 500;
+		
+		var obj = {
+			value: 0,
+			increment: function() {
+				this.value++
+
+				var innerFunction = function() {
+					console.log(this.value)
+				}.bind(this)		// now 'this' context is the object, not the window
+
+			}
+		}
+		obj.increment();
+
+
+
+		
+
+
+		</script>
+
+	</body>
+</html>
